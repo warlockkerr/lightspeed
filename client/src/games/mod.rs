@@ -39,6 +39,7 @@
 //! `tcp_ports()` emits the `tcp` equivalent.
 
 pub mod apex;
+pub mod arcraiders;
 pub mod bodycam;
 pub mod cs2;
 pub mod csgo;
@@ -244,6 +245,9 @@ pub fn detect_game(name: &str) -> anyhow::Result<Box<dyn GameConfig>> {
         "rust" | "rustgame" => Ok(Box::new(rust::RustConfig)),
         "valorant" => Ok(Box::new(valorant::ValorantConfig)),
         "apex" | "apexlegends" | "apex-legends" => Ok(Box::new(apex::ApexConfig)),
+        "arcraiders" | "arc-raiders" | "arc_raiders" => {
+            Ok(Box::new(arcraiders::ArcRaidersConfig))
+        }
         "ow2" | "overwatch2" | "overwatch-2" | "overwatch" => Ok(Box::new(ow2::Ow2Config)),
         "lol" | "leagueoflegends" | "league-of-legends" | "league" => Ok(Box::new(lol::LolConfig)),
         "pubg" | "battlegrounds" => Ok(Box::new(pubg::PubgConfig)),
@@ -287,6 +291,7 @@ pub const GAME_REGISTRY: &[(&str, &str)] = &[
     ("rust", "Rust"),
     ("valorant", "Valorant"),
     ("apex", "Apex Legends"),
+    ("arcraiders", "ARC Raiders"),
     ("ow2", "Overwatch 2"),
     ("lol", "League of Legends"),
     ("pubg", "PUBG: Battlegrounds"),
@@ -698,6 +703,9 @@ mod tests {
         "apex",
         "apexlegends",
         "apex-legends",
+        "arcraiders",
+        "arc-raiders",
+        "arc_raiders",
         // New games (v0.4.0-dev)
         "ow2",
         "overwatch2",
@@ -760,7 +768,7 @@ mod tests {
             GAME_REGISTRY.len(),
             "GAME_REGISTRY must stay in sync with the supported games"
         );
-        assert_eq!(GAME_REGISTRY.len(), 22, "22 supported games");
+        assert_eq!(GAME_REGISTRY.len(), 23, "23 supported games");
     }
 
     #[test]
