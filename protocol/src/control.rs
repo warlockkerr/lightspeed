@@ -103,7 +103,7 @@ pub mod game_id {
         ("minecraft", MINECRAFT),
         ("hunt", HUNT),
         ("minecraft-java", MINECRAFT_JAVA),
-	    ("arcraiders", ARC_RAIDERS),
+        ("arcraiders", ARC_RAIDERS),
     ];
 
     /// Resolve a CLI game key to its wire id, or [`UNKNOWN`] when absent.
