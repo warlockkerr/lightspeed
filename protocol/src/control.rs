@@ -75,7 +75,7 @@ pub mod game_id {
     pub const MINECRAFT_JAVA: u8 = 22;
     /// Embark Studios' ARC Raiders.
     pub const ARC_RAIDERS: u8 = 23;
- 
+
     /// Canonical CLI key mapped to its wire id, ordered by ascending id.
     ///
     /// Keys byte-match the client's canonical `--game` CLI strings. [`UNKNOWN`]
