@@ -998,46 +998,50 @@ mod tests {
         ));
     }
 
-    #[test]
-    fn test_game_ids_unique_and_stable() {
-        assert_eq!(game_id::GAME_IDS.len(), 23, "every real game needs one id");
+#[test]
+fn test_game_ids_unique_and_stable() {
+    assert_eq!(game_id::GAME_IDS.len(), 23, "every real game needs one id");
 
-        // Each id 1..=22 must appear exactly once (0 stays reserved for UNKNOWN).
-        let mut seen = [0u8; 23];
-        for (key, id) in game_id::GAME_IDS.iter().copied() {
-            assert!(
-                (1..=22).contains(&id),
-                "key {key:?} has out-of-range id {id}"
-            );
-            assert_eq!(seen[id as usize], 0, "duplicate id {id}");
-            seen[id as usize] += 1;
-        }
-        for id in 1..=22u8 {
-            assert_eq!(seen[id as usize], 1, "id {id} missing or duplicated");
-        }
+    // Each id 1..=23 must appear exactly once (0 stays reserved for UNKNOWN).
+    let mut seen = [0u8; 24];
 
-        assert_eq!(game_id::FORTNITE, 1);
-        assert_eq!(game_id::CS2, 2);
-        assert_eq!(game_id::DOTA2, 3);
-        assert_eq!(game_id::RUST, 4);
-        assert_eq!(game_id::VALORANT, 5);
-        assert_eq!(game_id::APEX, 6);
-        assert_eq!(game_id::OVERWATCH2, 7);
-        assert_eq!(game_id::LOL, 8);
-        assert_eq!(game_id::PUBG, 9);
-        assert_eq!(game_id::CSGO, 10);
-        assert_eq!(game_id::MAPLESTORY, 11);
-        assert_eq!(game_id::GENSHIN, 12);
-        assert_eq!(game_id::ROCKETLEAGUE, 13);
-        assert_eq!(game_id::WOT, 14);
-        assert_eq!(game_id::DEADBYDAYLIGHT, 15);
-        assert_eq!(game_id::BODYCAM, 16);
-        assert_eq!(game_id::ROBLOX, 17);
-        assert_eq!(game_id::ZOMBOID, 18);
-        assert_eq!(game_id::WARDDOGS, 19);
-        assert_eq!(game_id::MINECRAFT, 20);
-        assert_eq!(game_id::HUNT, 21);
+    for (key, id) in game_id::GAME_IDS.iter().copied() {
+        assert!(
+            (1..=23).contains(&id),
+            "key {key:?} has out-of-range id {id}"
+        );
+        assert_eq!(seen[id as usize], 0, "duplicate id {id}");
+        seen[id as usize] += 1;
     }
+
+    for id in 1..=23u8 {
+        assert_eq!(seen[id as usize], 1, "id {id} missing or duplicated");
+    }
+
+    assert_eq!(game_id::FORTNITE, 1);
+    assert_eq!(game_id::CS2, 2);
+    assert_eq!(game_id::DOTA2, 3);
+    assert_eq!(game_id::RUST, 4);
+    assert_eq!(game_id::VALORANT, 5);
+    assert_eq!(game_id::APEX, 6);
+    assert_eq!(game_id::OVERWATCH2, 7);
+    assert_eq!(game_id::LOL, 8);
+    assert_eq!(game_id::PUBG, 9);
+    assert_eq!(game_id::CSGO, 10);
+    assert_eq!(game_id::MAPLESTORY, 11);
+    assert_eq!(game_id::GENSHIN, 12);
+    assert_eq!(game_id::ROCKETLEAGUE, 13);
+    assert_eq!(game_id::WOT, 14);
+    assert_eq!(game_id::DEADBYDAYLIGHT, 15);
+    assert_eq!(game_id::BODYCAM, 16);
+    assert_eq!(game_id::ROBLOX, 17);
+    assert_eq!(game_id::ZOMBOID, 18);
+    assert_eq!(game_id::WARDDOGS, 19);
+    assert_eq!(game_id::MINECRAFT, 20);
+    assert_eq!(game_id::HUNT, 21);
+    assert_eq!(game_id::MINECRAFT_JAVA, 22);
+    assert_eq!(game_id::ARC_RAIDERS, 23);
+}
 
     #[test]
     fn test_id_for_key_roundtrip() {
