@@ -73,7 +73,9 @@ pub mod game_id {
     pub const HUNT: u8 = 21;
     /// Mojang's Minecraft, Java Edition (TCP gameplay over 25565).
     pub const MINECRAFT_JAVA: u8 = 22;
-
+    /// Embark Studios' ARC Raiders.
+    pub const ARC_RAIDERS: u8 = 23;
+ 
     /// Canonical CLI key mapped to its wire id, ordered by ascending id.
     ///
     /// Keys byte-match the client's canonical `--game` CLI strings. [`UNKNOWN`]
@@ -101,6 +103,7 @@ pub mod game_id {
         ("minecraft", MINECRAFT),
         ("hunt", HUNT),
         ("minecraft-java", MINECRAFT_JAVA),
+	("arcraiders", ARC_RAIDERS),
     ];
 
     /// Resolve a CLI game key to its wire id, or [`UNKNOWN`] when absent.
@@ -997,7 +1000,7 @@ mod tests {
 
     #[test]
     fn test_game_ids_unique_and_stable() {
-        assert_eq!(game_id::GAME_IDS.len(), 22, "every real game needs one id");
+        assert_eq!(game_id::GAME_IDS.len(), 23, "every real game needs one id");
 
         // Each id 1..=22 must appear exactly once (0 stays reserved for UNKNOWN).
         let mut seen = [0u8; 23];
