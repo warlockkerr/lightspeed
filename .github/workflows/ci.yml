@@ -231,7 +231,13 @@ jobs:
 
       - name: Test GUI
         run: cargo test -p lightspeed-gui
-
+        
+      - name: Upload Windows GUI
+        uses: actions/upload-artifact@v4
+        with:
+          name: lightspeed-gui-windows
+          path: target/release/lightspeed-gui.exe
+          retention-days: 7
   benchmarks:
     name: Benchmark Regression
     runs-on: ubuntu-latest
